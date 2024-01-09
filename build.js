@@ -5,6 +5,7 @@ const sourceFilePaths = [
   'utils/welcome.sh',
   'helpers/helpers.sh',
   'utils/checkOS.sh',
+  'utils/checkXcodeCli.sh',
 ];
 const destinationFilePath = 'install.sh';
 

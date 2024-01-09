@@ -2,7 +2,6 @@ echo -e "====================="
 echo -e "Welcome to macOS Init"
 echo -e "=====================\n"
 
-
 msg() {
   local message=$1
   echo -e "✅ \033[0;32m${message}\033[0m"
@@ -20,3 +19,11 @@ then
 else
   abort "macOS Init is only supported on macOS."
 fi
+
+if command -v xcode-select >/dev/null 2>&1; then
+    msg "Xcode Command Line Tools is already installed."
+else
+    echo "Installing Xcode Command Line Tools..."
+    xcode-select --install
+fi
+
