@@ -1,3 +1,8 @@
+echo -e "====================="
+echo -e "Welcome to macOS Init"
+echo -e "=====================\n"
+
+
 msg() {
   local message=$1
   echo -e "✅ \033[0;32m${message}\033[0m"

@@ -1,7 +1,11 @@
 const fs = require('fs');
 
 // Specify the array of source file paths and the destination file path
-const sourceFilePaths = ['helpers/helpers.sh', 'utils/checkOS.sh'];
+const sourceFilePaths = [
+  'utils/welcome.sh',
+  'helpers/helpers.sh',
+  'utils/checkOS.sh',
+];
 const destinationFilePath = 'install.sh';
 
 // Function to clear the destination file
