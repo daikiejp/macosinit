@@ -38,6 +38,8 @@ else
     xcode-select --install
 fi
 
+find $macosinit_folder -name '.DS_Store' -type f -delete
+
 if [ -d "$macosinit_folder" ]; then
   msg "The 'macosinit' folder exists on the desktop."
 else

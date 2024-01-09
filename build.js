@@ -6,6 +6,7 @@ const sourceFilePaths = [
   'helpers/helpers.sh',
   'utils/checkOS.sh',
   'utils/checkXcodeCli.sh',
+  'utils/DS_Store.sh',
   'utils/checkFiles.sh',
   'configs/ssh.sh',
 ];
