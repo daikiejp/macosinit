@@ -6,3 +6,4 @@ then
 else
   abort "macOS Init is only supported on macOS."
 fi
+
