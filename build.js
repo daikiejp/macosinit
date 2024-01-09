@@ -7,6 +7,7 @@ const sourceFilePaths = [
   'utils/checkOS.sh',
   'utils/checkXcodeCli.sh',
   'utils/checkFiles.sh',
+  'configs/ssh.sh',
 ];
 const destinationFilePath = 'install.sh';
 

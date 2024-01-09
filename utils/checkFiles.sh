@@ -1,9 +1,3 @@
-desktop_path="$HOME/Desktop"
-macosinit_folder="$desktop_path/macosinit"
-ssh_folder="$macosinit_folder/ssh"
-gpg_folder="$macosinit_folder/gpg"
-config_folder="$macosinit_folder/config"
-
 # Check macosinit folder
 if [ -d "$macosinit_folder" ]; then
   msg "The 'macosinit' folder exists on the desktop."

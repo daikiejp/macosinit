@@ -8,3 +8,10 @@ abort() {
   exit 1
 }
 
+# Folders
+desktop_path="$HOME/Desktop"
+macosinit_folder="$desktop_path/macosinit"
+ssh_folder="$macosinit_folder/ssh/"
+gpg_folder="$macosinit_folder/gpg"
+config_folder="$macosinit_folder/config"
+

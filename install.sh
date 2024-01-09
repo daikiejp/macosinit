@@ -12,6 +12,12 @@ abort() {
   exit 1
 }
 
+desktop_path="$HOME/Desktop"
+macosinit_folder="$desktop_path/macosinit"
+ssh_folder="$macosinit_folder/ssh/"
+gpg_folder="$macosinit_folder/gpg"
+config_folder="$macosinit_folder/config"
+
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -26,12 +32,6 @@ else
     echo "Installing Xcode Command Line Tools..."
     xcode-select --install
 fi
-
-desktop_path="$HOME/Desktop"
-macosinit_folder="$desktop_path/macosinit"
-ssh_folder="$macosinit_folder/ssh"
-gpg_folder="$macosinit_folder/gpg"
-config_folder="$macosinit_folder/config"
 
 if [ -d "$macosinit_folder" ]; then
   msg "The 'macosinit' folder exists on the desktop."
@@ -55,5 +55,13 @@ if [ -d "$config_folder" ]; then
   msg "The 'config' folder exists on the desktop."
 else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
+fi
+
+#Install ssh into the system.
+if [ -d "$ssh_folder" ]; then
+  cp -r "$ssh_folder" ~/.ssh
+  msg "Copied all ssh files into the system."
+else
+  abort "Error: The 'ssh' folder does not exist at the specified location."
 fi
 
