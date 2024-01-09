@@ -7,17 +7,22 @@ msg() {
   echo -e "✅ \033[0;32m${message}\033[0m"
 }
 
+warning() {
+  local message=$1
+  echo -e "📢 \033[38;5;208m${message}\033[0m"
+}
+
 abort() {
   printf "❌ \033[0;31m%s\n\033[0m" "$@" >&2
   exit 1
 }
 
 desktop_path="$HOME/Desktop"
+system_ssh_folder="$HOME/.ssh"
 macosinit_folder="$desktop_path/macosinit"
 ssh_folder="$macosinit_folder/ssh/"
 gpg_folder="$macosinit_folder/gpg"
 config_folder="$macosinit_folder/config"
-
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -57,11 +62,25 @@ else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
 fi
 
-#Install ssh into the system.
-if [ -d "$ssh_folder" ]; then
-  cp -r "$ssh_folder" ~/.ssh
-  msg "Copied all ssh files into the system."
-else
-  abort "Error: The 'ssh' folder does not exist at the specified location."
-fi
 
+if [ -z "$(ls -A $ssh_folder)" ]; then
+    warning "No SSH keys found in $ssh_folder"
+else
+    mkdir -p "$system_ssh_folder"
+
+    for ssh_key_file in $ssh_folder/*; do
+        chmod 600 "$ssh_key_file"
+
+        ssh_public_key=$(ssh-keygen -y -f $ssh_key_file 2>&1)
+
+        if [[ $ssh_public_key == *"invalid format"* ]]; then
+            cp "$ssh_key_file" "$system_ssh_folder"
+            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
+
+        else
+            cp "$ssh_key_file" "$system_ssh_folder"
+
+            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
+        fi 
+    done
+fi
