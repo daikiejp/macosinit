@@ -56,3 +56,4 @@ if [ -d "$config_folder" ]; then
 else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
 fi
+
