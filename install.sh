@@ -86,3 +86,27 @@ else
         fi 
     done
 fi
+
+
+for key_file in "$gpg_folder"/*.asc; do
+    if [ -e "$key_file" ]; then
+        key_id=$(gpg --with-colons --import-options show-only --import "$key_file" 2>/dev/null | awk -F: '$1=="pub"{print $5}')
+        
+        if gpg --list-keys "$key_id" &> /dev/null; then
+            warning "Key $key_id is already installed."
+        else
+            gpg --import "$key_file" &>/dev/null
+            import_exit_code=$?
+
+            if [ $import_exit_code -eq 0 ]; then
+                msg "Key $key_id has been successfully imported."
+                
+            else
+                abort "Error: Failed to import key from $key_file."
+            fi
+        fi
+    else
+        warning "No GPG key files found in the specified folder."
+    fi
+done
+

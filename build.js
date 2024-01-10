@@ -9,6 +9,7 @@ const sourceFilePaths = [
   'utils/DS_Store.sh',
   'utils/checkFiles.sh',
   'configs/ssh.sh',
+  'configs/gpg.sh',
 ];
 const destinationFilePath = 'install.sh';
 
