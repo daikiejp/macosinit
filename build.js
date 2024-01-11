@@ -9,9 +9,9 @@ const sourceFilePaths = [
   'utils/DS_Store.sh',
   'utils/checkFiles.sh',
   'configs/ssh.sh',
+  'configs/homebrew.sh',
   'configs/gpg.sh',
   'configs/wallpapers.sh',
-  'configs/homebrew.sh',
 ];
 const destinationFilePath = 'install.sh';
 

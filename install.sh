@@ -92,6 +92,28 @@ else
     done
 fi
 
+if command -v brew &> /dev/null; then
+    msg "Homebrew is already installed."
+else
+    warning "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    (echo "# Set PATH, MANPATH, etc., for Homebrew."; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [ ! -f $homebrew_packages ]; then
+    warning "No Homebrew packages file found."
+else
+    while IFS= read -r package; do
+        [[ "$package" =~ ^\ *# ]] || [ -z "$package" ] && continue
+
+        warning "Installing $package..."
+        brew install "$package"
+    done < $homebrew_packages
+
+    msg "Homebrew packages installation complete."
+fi
+
 
 for key_file in "$gpg_folder"/*.asc; do
     if [ -e "$key_file" ]; then
@@ -129,27 +151,5 @@ else
         done
         msg "Downloaded all images into Wallpaper/$category folder"
     done
-fi
-
-if command -v brew &> /dev/null; then
-    msg "Homebrew is already installed."
-else
-    warning "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    (echo "# Set PATH, MANPATH, etc., for Homebrew."; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if [ ! -f $homebrew_packages ]; then
-    warning "No Homebrew packages file found."
-else
-    while IFS= read -r package; do
-        [[ "$package" =~ ^\ *# ]] || [ -z "$package" ] && continue
-
-        warning "Installing $package..."
-        brew install "$package"
-    done < $homebrew_packages
-
-    msg "Homebrew packages installation complete."
 fi
 
