@@ -24,6 +24,7 @@ macosinit_folder="$desktop_path/macosinit"
 ssh_folder="$macosinit_folder/ssh/"
 gpg_folder="$macosinit_folder/gpg"
 config_folder="$macosinit_folder/config"
+zshrc_file="zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
@@ -151,5 +152,13 @@ else
         done
         msg "Downloaded all images into Wallpaper/$category folder"
     done
+fi
+
+
+if [ -z "$(ls -A $config_folder/$zshrc_file)" ]; then
+    abort "No zshrc file was found in $zshrc_file"
+else
+    cp "$config_folder/$zshrc_file" "$HOME" && mv "$HOME/$zshrc_file" "$HOME/.$zshrc_file"
+    msg "zshrc from "$config_folder/$zshrc_file" copied to $HOME"
 fi
 
