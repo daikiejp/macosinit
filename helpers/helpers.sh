@@ -24,4 +24,4 @@ config_folder="$macosinit_folder/config"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
-
+homebrew_packages="$config_folder/homebrew.txt"

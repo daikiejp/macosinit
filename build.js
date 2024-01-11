@@ -11,6 +11,7 @@ const sourceFilePaths = [
   'configs/ssh.sh',
   'configs/gpg.sh',
   'configs/wallpapers.sh',
+  'configs/homebrew.sh',
 ];
 const destinationFilePath = 'install.sh';
 

@@ -27,7 +27,7 @@ config_folder="$macosinit_folder/config"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
-
+homebrew_packages="$config_folder/homebrew.txt"
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -129,5 +129,25 @@ else
         done
         msg "Downloaded all images into Wallpaper/$category folder"
     done
+fi
+
+if command -v brew &> /dev/null; then
+    msg "Homebrew is already installed."
+else
+    warning "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if [ ! -f $homebrew_packages ]; then
+    warning "No Homebrew packages file found."
+else
+    while IFS= read -r package; do
+        [[ "$package" =~ ^\ *# ]] || [ -z "$package" ] && continue
+
+        warning "Installing $package..."
+        brew install "$package"
+    done < $homebrew_packages
+
+    msg "Homebrew packages installation complete."
 fi
 
