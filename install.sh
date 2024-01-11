@@ -19,10 +19,15 @@ abort() {
 
 desktop_path="$HOME/Desktop"
 system_ssh_folder="$HOME/.ssh"
+pictures_folder="$HOME/Pictures"
 macosinit_folder="$desktop_path/macosinit"
 ssh_folder="$macosinit_folder/ssh/"
 gpg_folder="$macosinit_folder/gpg"
 config_folder="$macosinit_folder/config"
+system_wallpapers_folder="$pictures_folder/Wallpapers"
+wallpapers_folder="$macosinit_folder/wallpapers"
+wallpapers_data="$wallpapers_folder/wallpapers.json"
+
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -109,4 +114,20 @@ for key_file in "$gpg_folder"/*.asc; do
         warning "No GPG key files found in the specified folder."
     fi
 done
+
+if [ -z "$(ls -A $wallpapers_folder)" ]; then
+    warning "Wallpapers JSON file not found in $wallpapers_folder"
+else
+    mkdir -p $system_wallpapers_folder
+
+    for category in $(cat "$wallpapers_data" | sed -n 's/"\([^"]*\)": \[.*/\1/p'); do
+        warning "Downloading Wallpapers for: $category"
+        mkdir -p "$system_wallpapers_folder/$category"
+        
+        for url in $(cat "$wallpapers_data" | sed -n "/$category\": \[/,/]/p" | sed -e 's/^[[:space:]]*//' -e 's/"//g' -e 's/,//'); do
+            curl -s "$url" -o "$system_wallpapers_folder/$category/$(basename "$url")"
+        done
+        msg "Downloaded all images into Wallpaper/$category folder"
+    done
+fi
 

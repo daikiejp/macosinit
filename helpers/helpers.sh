@@ -16,7 +16,12 @@ abort() {
 # Folders
 desktop_path="$HOME/Desktop"
 system_ssh_folder="$HOME/.ssh"
+pictures_folder="$HOME/Pictures"
 macosinit_folder="$desktop_path/macosinit"
 ssh_folder="$macosinit_folder/ssh/"
 gpg_folder="$macosinit_folder/gpg"
 config_folder="$macosinit_folder/config"
+system_wallpapers_folder="$pictures_folder/Wallpapers"
+wallpapers_folder="$macosinit_folder/wallpapers"
+wallpapers_data="$wallpapers_folder/wallpapers.json"
+

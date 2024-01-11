@@ -10,6 +10,7 @@ const sourceFilePaths = [
   'utils/checkFiles.sh',
   'configs/ssh.sh',
   'configs/gpg.sh',
+  'configs/wallpapers.sh',
 ];
 const destinationFilePath = 'install.sh';
 
