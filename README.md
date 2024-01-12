@@ -1,5 +1,15 @@
 # macOS Init
 
+## Modules
+
+| Name       | Description            | Required |
+| ---------- | ---------------------- | -------- |
+| SSH        | Install SSH Keys       | Yes      |
+| Homebrew   | Install Homebrew       | Yes      |
+| GPG        | Install GPG Keys       | Optional |
+| Wallpapers | Copy Wallpapers        | Optional |
+| zshrc      | Copy zshrc config file | Yes      |
+
 ## Usage
 
 ```bash
