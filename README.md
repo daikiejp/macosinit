@@ -2,13 +2,24 @@
 
 ## Modules
 
-| Name       | Description            | Required |
-| ---------- | ---------------------- | -------- |
-| SSH        | Install SSH Keys       | Yes      |
-| Homebrew   | Install Homebrew       | Yes      |
-| GPG        | Install GPG Keys       | Optional |
-| Wallpapers | Copy Wallpapers        | Optional |
-| zshrc      | Copy zshrc config file | Yes      |
+| Name         | Description                  | Required |
+| ------------ | ---------------------------- | -------- |
+| SSH          | Install SSH Keys             | Yes      |
+| Homebrew     | Install Homebrew and apps    | Yes      |
+| GPG          | Install GPG Keys             | Optional |
+| Wallpapers   | Copy Wallpapers              | Optional |
+| zshrc        | Copy zshrc config file       | Yes      |
+| vimrc        | Copy vimrc config file       | Yes      |
+| gitconfig    | Git config and workspace     | Yes      |
+| scripts      | Custom scripts               | Optional |
+| vscode       | Extensions, Theme and Config | Yes      |
+| wakatime.cfg | Wakatime Config              | Optional |
+
+## TODO
+
+- Docker Data
+- Arc/Brave Import
+- Preferences
 
 ## Usage
 
