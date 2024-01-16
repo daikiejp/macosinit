@@ -12,4 +12,8 @@ else
   # Create SSH Folder
   mkdir "$ssh_folder"
   msg "Folder '$ssh_folder' has been created."
+
+  # Create GPG Folder
+  mkdir "$gpg_folder"
+  msg "Folder '$gpg_folder' has been created."
 fi
