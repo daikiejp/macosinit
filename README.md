@@ -9,9 +9,9 @@
 | GPG          | Install GPG Keys             | Optional |
 | Wallpapers   | Copy Wallpapers              | Optional |
 | zshrc        | Copy zshrc config file       | Yes      |
+| scripts      | Custom scripts and aliases   | Optional |
 | vimrc        | Copy vimrc config file       | Yes      |
 | gitconfig    | Git config and workspace     | Yes      |
-| scripts      | Custom scripts               | Optional |
 | vscode       | Extensions, Theme and Config | Yes      |
 | wakatime.cfg | Wakatime Config              | Optional |
 

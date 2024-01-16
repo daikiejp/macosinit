@@ -29,6 +29,12 @@ system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
 homebrew_packages="$config_folder/homebrew.txt"
+scripts_folder="$macosinit_folder/scripts"
+system_scripts="$HOME/.config/scripts"
+system_config_folder="$HOME/.config"
+aliases_file="$macosinit_folder/aliases.sh"
+aliases_system_file="$system_config_folder/aliases.sh"
+
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -162,3 +168,33 @@ else
     msg "zshrc from "$config_folder/$zshrc_file" copied to $HOME"
 fi
 
+
+if [ -z "$(ls -A $scripts_folder)" ]; then
+    warning "No scripts found in $scripts_folder"
+else
+    if [ -z "$(ls -A $aliases_file)" ]; then
+        warning "No aliases found in $scripts_folder"
+    else
+        cp "$aliases_file" "$system_config_folder"
+
+        mkdir -p "$system_scripts"
+
+        for scripts_file in $scripts_folder/*; do
+
+        cp "$scripts_file" "$system_scripts"
+
+        msg "Scripts from $scripts_file copied to $system_scripts" 
+        done
+        
+        if [[ -f "$aliases_system_file" ]]; then
+            sed -i '' 's|SCRIPT_DIR="scripts"|SCRIPT_DIR="$HOME/.config/scripts"|' "$aliases_system_file"
+            msg "The line SCRIPT_DIR has been successfully replaced in $aliases_system_file."
+        else
+            warning "The file $aliases_system_file does not exist."
+        fi
+
+        chmod +x "$aliases_system_file"
+
+        /bin/bash -c "$aliases_system_file"
+    fi
+fi

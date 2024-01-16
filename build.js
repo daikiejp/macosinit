@@ -13,6 +13,7 @@ const sourceFilePaths = [
   'configs/gpg.sh',
   'configs/wallpapers.sh',
   'configs/zshrc.sh',
+  'configs/scripts.sh',
 ];
 const destinationFilePath = 'install.sh';
 
