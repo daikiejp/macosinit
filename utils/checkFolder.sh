@@ -16,4 +16,8 @@ else
   # Create GPG Folder
   mkdir "$gpg_folder"
   msg "Folder '$gpg_folder' has been created."
+
+  # Create Config Folder
+  mkdir "$config_folder"
+  msg "Folder '$config_folder' has been created."
 fi
