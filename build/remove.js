@@ -5,7 +5,7 @@ const sourceFilePaths = [
   'utils/welcome.sh',
   'helpers/helpers.sh',
   'utils/checkOS.sh',
-  'utils/removeGPG.sh',
+  'remove/SSH.sh',
 ];
 const destinationFilePath = 'remove.sh';
 
