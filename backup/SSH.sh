@@ -5,8 +5,11 @@ copy_and_rename() {
   for file in "$src_dir"/*; do
     if [[ -f $file ]]; then
       base_name=$(basename "$file")
-      new_name="${base_name#.}"
-      cp "$file" "$dest_dir/$new_name"
+      # Exclude the config file from being copied
+      if [[ "$base_name" != "config" ]]; then
+        new_name="${base_name#.}"
+        cp "$file" "$dest_dir/$new_name"
+      fi
     fi
   done
 }

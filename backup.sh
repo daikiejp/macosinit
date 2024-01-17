@@ -67,8 +67,10 @@ copy_and_rename() {
   for file in "$src_dir"/*; do
     if [[ -f $file ]]; then
       base_name=$(basename "$file")
-      new_name="${base_name#.}"
-      cp "$file" "$dest_dir/$new_name"
+      if [[ "$base_name" != "config" ]]; then
+        new_name="${base_name#.}"
+        cp "$file" "$dest_dir/$new_name"
+      fi
     fi
   done
 }
@@ -79,21 +81,12 @@ if [ -d "$system_ssh_folder" ]; then
 else
   warning "SSH directory does not exist, skipping..."
 fi
-if ! gpg --list-keys > /dev/null 2>&1; then
-  warning "No GPG public keys found to export."
+#!/bin/bash
+
+if [ -f "$system_ssh_folder/config" ]; then
+  mkdir -p "$config_folder/ssh"
+  cp "$system_ssh_folder/config" "$config_folder/ssh/config"
+  msg "The config file has been copied to the Desktop."
 else
-  gpg --export --armor > "$gpg_folder/public_keys.asc"
-  #msg "Public keys exported to $gpg_folder/public_keys.asc"
+  warning "The config file does not exist in the .ssh directory."
 fi
-
-if ! gpg --list-secret-keys > /dev/null 2>&1; then
-  warning "No GPG private keys found to export."
-else
-  gpg --export-secret-keys --armor > "$gpg_folder/private_keys.asc"
-  #msg "Private keys exported to $gpg_folder/private_keys.asc"
-fi
-
-gpg --export-ownertrust > "$gpg_folder/ownertrust.txt"
-#msg "Ownertrust exported to $gpg_folder/ownertrust.txt"
-
-msg "GPG keys have been exported to '$gpg_folder'."
