@@ -7,7 +7,7 @@ const sourceFilePaths = [
   'utils/checkOS.sh',
   'utils/checkFolder.sh',
   'backup/SSH.sh',
-  // 'utils/backupGPG.sh',
+  'backup/GPG.sh',
   // 'utils/checkXcodeCli.sh',
   // 'utils/DS_Store.sh',
   // 'utils/checkFiles.sh',
