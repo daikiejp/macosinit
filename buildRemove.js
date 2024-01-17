@@ -5,17 +5,9 @@ const sourceFilePaths = [
   'utils/welcome.sh',
   'helpers/helpers.sh',
   'utils/checkOS.sh',
-  'utils/checkXcodeCli.sh',
-  'utils/DS_Store.sh',
-  'utils/checkFiles.sh',
-  // 'configs/ssh.sh',
-  // 'configs/homebrew.sh',
-  'configs/gpg.sh',
-  // 'configs/wallpapers.sh',
-  // 'configs/zshrc.sh',
-  // 'configs/scripts.sh',
+  'utils/removeGPG.sh',
 ];
-const destinationFilePath = 'install.sh';
+const destinationFilePath = 'remove.sh';
 
 // Function to clear the destination file
 function clearDestination(callback) {
