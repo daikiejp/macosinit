@@ -45,15 +45,44 @@ fi
 
 #!/bin/bash
 
-read -p "Are you sure you want to delete all SSH keys and configurations? This action cannot be undone. (y/n): " confirmation
+delete_ssh_keys() {
+  read -p "Are you sure you want to delete all SSH keys and configurations? This action cannot be undone. (y/n): " confirmation
 
-if [ "$confirmation" != "y" ]; then
-  abort "Aborted."
-fi
+  if [ "$confirmation" != "y" ]; then
+    warning "Aborted."
+    return 1
+  fi
 
-if [ -d "$system_ssh_folder" ]; then
-  rm -rf "$system_ssh_folder"/*
-  msg "All SSH keys and configurations have been deleted."
-else
-  warning "The .ssh directory does not exist. Skipping..."
-fi
+  if [ -d "$system_ssh_folder" ]; then
+    rm -rf "$system_ssh_folder"/*
+    echo "All SSH keys and configurations have been deleted."
+  else
+    echo "The .ssh directory does not exist. Skipping..."
+  fi
+}
+
+delete_ssh_keys
+#!/bin/bash
+
+delete_gpg_keys() {
+  read -p "Are you sure you want to delete all GPG keys? This action cannot be undone. (y/n): " confirmation
+
+  if [ "$confirmation" != "y" ]; then
+    warning "Aborted."
+    return 1
+  fi
+
+  for key in $(gpg --list-secret-keys --with-colons | grep '^sec' | awk -F: '{print $5}'); do
+    echo "Deleting secret key: $key"
+    gpg --delete-secret-keys "$key"
+  done
+
+  for key in $(gpg --list-keys --with-colons | grep '^pub' | awk -F: '{print $5}'); do
+    echo "Deleting public key: $key"
+    gpg --delete-keys "$key"
+  done
+
+  echo "All GPG keys have been deleted."
+}
+
+delete_gpg_keys
