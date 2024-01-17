@@ -77,25 +77,25 @@ else
 fi
 
 
-for key_file in "$gpg_folder"/*.asc; do
-    if [ -e "$key_file" ]; then
-        key_id=$(gpg --with-colons --import-options show-only --import "$key_file" 2>/dev/null | awk -F: '$1=="pub"{print $5}')
-        
-        if gpg --list-keys "$key_id" &> /dev/null; then
-            warning "Key $key_id is already installed."
-        else
-            gpg --import "$key_file" &>/dev/null
-            import_exit_code=$?
+if [ -z "$(ls -A $ssh_folder)" ]; then
+    warning "No SSH keys found in $ssh_folder"
+else
+    mkdir -p "$system_ssh_folder"
 
-            if [ $import_exit_code -eq 0 ]; then
-                msg "Key $key_id has been successfully imported."
-                
-            else
-                abort "Error: Failed to import key from $key_file."
-            fi
-        fi
-    else
-        warning "No GPG key files found in the specified folder."
-    fi
-done
+    for ssh_key_file in $ssh_folder/*; do
+        chmod 600 "$ssh_key_file"
+
+        ssh_public_key=$(ssh-keygen -y -f $ssh_key_file 2>&1)
+
+        if [[ $ssh_public_key == *"invalid format"* ]]; then
+            cp "$ssh_key_file" "$system_ssh_folder"
+            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
+
+        else
+            cp "$ssh_key_file" "$system_ssh_folder"
+
+            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
+        fi 
+    done
+fi
 
