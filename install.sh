@@ -78,29 +78,9 @@ fi
 
 #!/bin/bash
 
-if [ -f "$config_folder/git/gitconfig" ]; then
-  cp "$config_folder/git/gitconfig" "$HOME/.gitconfig"
-  msg "The .gitconfig file has been copied."
+if [ -f "$config_folder/wakatime.cfg" ]; then
+  cp "$config_folder/wakatime.cfg" "$HOME/.wakatime.cfg"
+  msg "The wakatime.cfg file has been copied."
 else
-  warning "The .gitconfig file does not exist in the $config_folder directory. Skipping..."
-fi
-
-copy_git_configs() {
-  local src_dir=$1
-  local dest_dir=$2
-  mkdir -p "$dest_dir"
-  for file in "$src_dir"/*; do
-    base_name=$(basename "$file")
-    if [[ -f $file && "$base_name" != "gitconfig" ]]; then
-      cp "$file" "$dest_dir"
-    fi
-  done
-}
-
-if [ -d "$config_folder/git" ]; then
-  mkdir -p "$config_folder/git"
-  copy_git_configs "$config_folder/git" "$system_config_folder/git"
-  msg "The git config files have been copied, excluding gitconfig."
-else
-  warning "The git config directory does not exist in the $config_folder directory. Skipping..."
+  warning "The wakatime config file does not exist in the $config_folder directory. Skipping..."
 fi
