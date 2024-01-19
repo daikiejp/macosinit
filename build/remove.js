@@ -7,6 +7,7 @@ const sourceFilePaths = [
   'utils/checkOS.sh',
   'remove/SSH.sh',
   'remove/GPG.sh',
+  'remove/config/gitconfig.sh',
 ];
 const destinationFilePath = 'remove.sh';
 

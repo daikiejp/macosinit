@@ -82,7 +82,33 @@ delete_gpg_keys() {
     gpg --delete-keys "$key"
   done
 
-  echo "All GPG keys have been deleted."
+  msg "All GPG keys have been deleted."
 }
 
 delete_gpg_keys
+#!/bin/bash
+
+delete_gitconfig() {
+  read -p "Are you sure you want to delete all gitconfig preferences configurations? This action cannot be undone. (y/n): " confirmation
+
+  if [ "$confirmation" != "y" ]; then
+    warning "Aborted."
+    return 1
+  fi
+
+  if [ -f "$HOME/.gitconfig" ]; then
+    rm -f "$HOME/.gitconfig"
+    msg ".gitconfig configuration has been deleted."
+  else
+    warning ".gitconfig file does not exist. Skipping..."
+  fi
+
+  if [ -d "$system_config_folder/git" ]; then
+    rm -rf "$system_config_folder/git"
+    msg "All gitconfig configurations have been deleted."
+  else
+    warning "The $system_config_folder/git directory does not exist. Skipping..."
+  fi
+}
+
+delete_gitconfig
