@@ -18,7 +18,6 @@
 ## TODO
 
 - Docker Data
-- Arc/Brave Import
 - Preferences
 
 ## Usage
@@ -32,7 +31,9 @@
 Config by editing your own preferences on folders `preferences` and build with
 
 ```bash
-node build.js
+node build/backup.js
+node build/install.js
+node build/remove.js
 ```
 
 then, execute:
