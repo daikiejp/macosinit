@@ -77,29 +77,6 @@ else
 fi
 
 
-if [ -z "$(ls -A $ssh_folder)" ]; then
-    warning "No SSH keys found in $ssh_folder"
-else
-    mkdir -p "$system_ssh_folder"
-
-    for ssh_key_file in $ssh_folder/*; do
-        chmod 600 "$ssh_key_file"
-
-        ssh_public_key=$(ssh-keygen -y -f $ssh_key_file 2>&1)
-
-        if [[ $ssh_public_key == *"invalid format"* ]]; then
-            cp "$ssh_key_file" "$system_ssh_folder"
-            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
-
-        else
-            cp "$ssh_key_file" "$system_ssh_folder"
-
-            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
-        fi 
-    done
-fi
-
-
 if [ -z "$(ls -A $config_folder/ssh/config)" ]; then
     warning "No SSH config found in $ssh_folder. Skipping..."
 else
