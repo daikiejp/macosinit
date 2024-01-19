@@ -22,6 +22,7 @@ else
   {
     echo "$comment_line"
     echo "$line_to_add"
+    echo ""
     cat "$zshrc_file"
   } > "$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
 

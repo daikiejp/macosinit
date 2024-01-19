@@ -47,9 +47,3 @@ install_powerlevel10k() {
 # Install Oh My Zsh and Powerlevel10k
 install_oh_my_zsh
 install_powerlevel10k
-
-# Apply the changes
-# echo "Applying changes..."
-# source ~/.zshrc
-
-echo "Installation completed. Please restart your terminal."

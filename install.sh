@@ -114,9 +114,6 @@ install_powerlevel10k() {
 
 install_oh_my_zsh
 install_powerlevel10k
-
-
-echo "Installation completed. Please restart your terminal."
 #!/bin/bash
 
 comment_line='# GPG Issue'
@@ -136,6 +133,7 @@ else
   {
     echo "$comment_line"
     echo "$line_to_add"
+    echo ""
     cat "$zshrc_file"
   } > "$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
 
