@@ -28,7 +28,7 @@ zshrc_file="zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
-homebrew_packages="$config_folder/homebrew.txt"
+homebrew_packages="$config_folder/brew.txt"
 scripts_folder="$macosinit_folder/scripts"
 system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
@@ -46,7 +46,7 @@ fi
 #!/bin/bash
 
 if command -v brew >/dev/null 2>&1; then
-    installed_packages=$(brew list)
+    installed_packages=$(brew leaves -r && brew list --cask)
 
     for package in $installed_packages; do
         echo "Uninstalling $package..."

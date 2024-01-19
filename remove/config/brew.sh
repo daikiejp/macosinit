@@ -3,7 +3,7 @@
 # Check if Homebrew is installed
 if command -v brew >/dev/null 2>&1; then
     # Get a list of all installed packages
-    installed_packages=$(brew list)
+    installed_packages=$(brew leaves -r && brew list --cask)
 
     # Uninstall each package
     for package in $installed_packages; do
