@@ -78,6 +78,47 @@ fi
 
 #!/bin/bash
 
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+install_oh_my_zsh() {
+    if command_exists zsh; then
+        msg "Zsh is already installed."
+    else
+        brew install zsh || { abort "Failed to install Zsh"; }
+    fi
+
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+        msg "Oh My Zsh is already installed."
+    else
+        RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || { abort "Failed to install Oh My Zsh"; }
+    fi
+}
+
+install_powerlevel10k() {
+    if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+        msg "Powerlevel10k is already installed."
+    else
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k || { abort "Failed to install Power10k"; }
+          if [[ -f "$HOME/.zshrc" ]]; then
+            sed -i.bak 's|ZSH_THEME="robbyrussell"|ZSH_THEME="powerlevel10k/powerlevel10k"|' "$HOME/.zshrc"
+            msg "Theme powerlevel10k replaced successfully."
+            rm -f "$HOME/.zshrc.bak"
+          else
+            warning "Powerlevel10k is not installed"
+          fi
+    fi
+}
+
+
+install_oh_my_zsh
+install_powerlevel10k
+
+
+echo "Installation completed. Please restart your terminal."
+#!/bin/bash
+
 comment_line='# GPG Issue'
 line_to_add='export GPG_TTY=$TTY'
 
@@ -99,4 +140,12 @@ else
   } > "$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
 
   msg ".zshrc file is created and added GPG_TTY"
+fi
+#!/bin/bash
+
+if [ -f "$config_folder/wakatime.cfg" ]; then
+  cp "$config_folder/wakatime.cfg" "$HOME/.wakatime.cfg"
+  msg "The wakatime.cfg file has been copied."
+else
+  warning "The wakatime config file does not exist in the $config_folder directory. Skipping..."
 fi
