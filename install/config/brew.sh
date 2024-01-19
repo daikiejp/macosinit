@@ -27,16 +27,7 @@ echo "Updating Homebrew..."
 brew update
 
 # Read package names from the file and install them
-while read -r formula; do  
-  # Install Homebrew packages
-  if brew install "$formula"; then
-    msg "$formula installed successfully."
-  else
-    echo "Error installing $formula. Continuing with the next package..."
-  fi
-  
-  echo
-done < "$homebrew_packages"
+xargs brew install < $homebrew_packages
 
 msg "All packages from $homebrew_packages have been processed."
 
