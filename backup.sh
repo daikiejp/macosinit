@@ -28,7 +28,7 @@ zshrc_file="zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
-homebrew_packages="$config_folder/homebrew.txt"
+homebrew_packages="$config_folder/brew.txt"
 scripts_folder="$macosinit_folder/scripts"
 system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
@@ -63,9 +63,12 @@ else
 fi
 
 if command -v brew >/dev/null 2>&1; then
-    brew list > "$config_folder/brew.txt"
+    brew leaves -r > "$config_folder/brew.txt"
+    brew list --cask >> "$config_folder/brew.txt"
 
     msg "List of installed Homebrew packages has been successfully exported to $config_folder/brew.txt"
 else
     warning "Homebrew is not installed on this system. Skipping..."
+    touch $config_folder/brew.txt
 fi
+

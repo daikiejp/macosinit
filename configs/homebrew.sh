@@ -13,13 +13,23 @@ fi
 if [ ! -f $homebrew_packages ]; then
     warning "No Homebrew packages file found."
 else
-    # Read packages from the external file and install them
-    while IFS= read -r package; do
-        # Skip comments and empty lines
-        [[ "$package" =~ ^\ *# ]] || [ -z "$package" ] && continue
+    # Read package names from the file and install them
+    echo "Installing packages from $homebrew_packages..."
+    while IFS= read -r package || [[ -n "$package" ]]; do
+    # Skip empty lines and comments
+    if [[ -z "$package" || "$package" == \#* ]]; then
+        continue
+    fi
 
-        warning "Installing $package..."
-        brew install "$package"
+    echo "Installing $package..."
+    brew install "$package"
+
+    # Check if the package was installed successfully
+    if brew list --formula | grep -q "^$package\$"; then
+        echo "$package installed successfully."
+    else
+        echo "Failed to install $package."
+    fi
     done < $homebrew_packages
 
     msg "Homebrew packages installation complete."

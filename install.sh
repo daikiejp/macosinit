@@ -28,7 +28,7 @@ zshrc_file="zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
-homebrew_packages="$config_folder/homebrew.txt"
+homebrew_packages="$config_folder/brew.txt"
 scripts_folder="$macosinit_folder/scripts"
 system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
@@ -78,72 +78,31 @@ fi
 
 #!/bin/bash
 
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-install_oh_my_zsh() {
-    if command_exists zsh; then
-        msg "Zsh is already installed."
-    else
-        brew install zsh || { abort "Failed to install Zsh"; }
-    fi
-
-    if [ -d "$HOME/.oh-my-zsh" ]; then
-        msg "Oh My Zsh is already installed."
-    else
-        RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || { abort "Failed to install Oh My Zsh"; }
-    fi
-}
-
-install_powerlevel10k() {
-    if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
-        msg "Powerlevel10k is already installed."
-    else
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k || { abort "Failed to install Power10k"; }
-          if [[ -f "$HOME/.zshrc" ]]; then
-            sed -i.bak 's|ZSH_THEME="robbyrussell"|ZSH_THEME="powerlevel10k/powerlevel10k"|' "$HOME/.zshrc"
-            msg "Theme powerlevel10k replaced successfully."
-            rm -f "$HOME/.zshrc.bak"
-          else
-            warning "Powerlevel10k is not installed"
-          fi
-    fi
-}
-
-
-install_oh_my_zsh
-install_powerlevel10k
-#!/bin/bash
-
-comment_line='# GPG Issue'
-line_to_add='export GPG_TTY=$TTY'
-
-zshrc_file="$HOME/.zshrc"
-
-if [ ! -f "$zshrc_file" ]; then
-  touch "$zshrc_file"
-  msg "Created $zshrc_file as it did not exist."
+if [[ ! -f "$homebrew_packages" ]]; then
+    warning "Error: File '$homebrew_packages' not found."
 fi
 
-if grep -Fxq "$comment_line" "$zshrc_file" && grep -Fxq "$line_to_add" "$zshrc_file"; then
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew..."
 
-  warning "The line '$line_to_add' already exists in $zshrc_file. No changes made."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    if command -v brew >/dev/null 2>&1; then
+        msg "Homebrew installed successfully."
+    else
+        abort "Failed to install Homebrew."
+    fi
 else
-  {
-    echo "$comment_line"
-    echo "$line_to_add"
-    echo ""
-    cat "$zshrc_file"
-  } > "$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
-
-  msg ".zshrc file is created and added GPG_TTY"
+    warning "Homebrew is already installed. Skipping..."
 fi
-#!/bin/bash
 
-if [ -f "$config_folder/wakatime.cfg" ]; then
-  cp "$config_folder/wakatime.cfg" "$HOME/.wakatime.cfg"
-  msg "The wakatime.cfg file has been copied."
-else
-  warning "The wakatime config file does not exist in the $config_folder directory. Skipping..."
-fi
+echo "Updating Homebrew..."
+brew update
+
+echo "Installing packages from $homebrew_packages"
+while read formula; do brew install "$formula"; done < $homebrew_packages
+
+
+
+
+msg "All packages from $homebrew_packages have been processed."
