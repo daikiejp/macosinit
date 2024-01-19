@@ -8,7 +8,7 @@ const sourceFilePaths = [
   'utils/checkFolder.sh',
   'backup/SSH.sh',
   // 'backup/GPG.sh',
-  // 'backup/configSSH.sh',
+  // 'backup/config/SSH.sh',
   'backup/config/gitconfig.sh',
 ];
 const destinationFilePath = 'backup.sh';

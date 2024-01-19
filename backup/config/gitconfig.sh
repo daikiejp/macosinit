@@ -8,7 +8,7 @@ if [ -f "$HOME/.gitconfig" ]; then
   cp "$HOME/.gitconfig" "$config_folder/git/gitconfig"
   msg "The .gitconfig file has been copied. (It's not hidden)"
 else
-  warning "The .gitconfig file does not exist in the $HOME directory."
+  warning "The .gitconfig file does not exist in the $HOME directory. Skipping..."
 fi
 
 # Check if the git configs file exists
@@ -19,6 +19,6 @@ if [ -d "$system_config_folder/git" ]; then
   cp -R "$system_config_folder/git" "$config_folder"
   msg "The git config files has been copied."
 else
-  warning "The git config files does not exists in the $config_folder directory."
+  warning "The git config files does not exists in the $config_folder directory. Skipping..."
 fi
 
