@@ -99,10 +99,17 @@ fi
 echo "Updating Homebrew..."
 brew update
 
-echo "Installing packages from $homebrew_packages"
-while read formula; do brew install "$formula"; done < $homebrew_packages
 
 
-
+while read -r formula; do
+  
+  if brew install "$formula"; then
+    echo "$formula instalado correctamente."
+  else
+    echo "Error al instalar $formula. Continuando con el siguiente paquete..."
+  fi
+  
+  echo
+done < "$homebrew_packages"
 
 msg "All packages from $homebrew_packages have been processed."
