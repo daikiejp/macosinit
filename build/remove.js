@@ -5,9 +5,10 @@ const sourceFilePaths = [
   'utils/welcome.sh',
   'helpers/helpers.sh',
   'utils/checkOS.sh',
-  'remove/SSH.sh',
-  'remove/GPG.sh',
-  'remove/config/gitconfig.sh',
+  // 'remove/SSH.sh',
+  // 'remove/GPG.sh',
+  // 'remove/config/gitconfig.sh',
+  'remove/config/wakatime.sh',
 ];
 const destinationFilePath = 'remove.sh';
 

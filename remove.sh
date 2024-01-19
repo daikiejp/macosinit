@@ -45,70 +45,28 @@ fi
 
 #!/bin/bash
 
-delete_ssh_keys() {
-  read -p "Are you sure you want to delete all SSH keys and configurations? This action cannot be undone. (y/n): " confirmation
+delete_wakatime() {
+  read -p "Are you sure you want to delete wakatime configurations? This action cannot be undone. (y/n): " confirmation
 
   if [ "$confirmation" != "y" ]; then
     warning "Aborted."
     return 1
   fi
 
-  if [ -d "$system_ssh_folder" ]; then
-    rm -rf "$system_ssh_folder"/*
-    echo "All SSH keys and configurations have been deleted."
+  if [ -f "$HOME/.wakatime.cfg" ]; then
+    rm -f "$HOME/.wakatime.cfg"
+    msg ".wakatime.cfg configuration has been deleted."
   else
-    echo "The .ssh directory does not exist. Skipping..."
+    warning ".wakatime.cfg file does not exist. Skipping..."
+  fi
+
+  if [ -d "$HOME/.wakatime" ]; then
+    rm -rf "$HOME/.wakatime"
+    rm -rf $HOME/.wakatime*
+    msg "All wakatime folder and configurations have been deleted."
+  else
+    warning "The $HOME/.wakatime directory does not exist. Skipping..."
   fi
 }
 
-delete_ssh_keys
-#!/bin/bash
-
-delete_gpg_keys() {
-  read -p "Are you sure you want to delete all GPG keys? This action cannot be undone. (y/n): " confirmation
-
-  if [ "$confirmation" != "y" ]; then
-    warning "Aborted."
-    return 1
-  fi
-
-  for key in $(gpg --list-secret-keys --with-colons | grep '^sec' | awk -F: '{print $5}'); do
-    echo "Deleting secret key: $key"
-    gpg --delete-secret-keys "$key"
-  done
-
-  for key in $(gpg --list-keys --with-colons | grep '^pub' | awk -F: '{print $5}'); do
-    echo "Deleting public key: $key"
-    gpg --delete-keys "$key"
-  done
-
-  msg "All GPG keys have been deleted."
-}
-
-delete_gpg_keys
-#!/bin/bash
-
-delete_gitconfig() {
-  read -p "Are you sure you want to delete all gitconfig preferences configurations? This action cannot be undone. (y/n): " confirmation
-
-  if [ "$confirmation" != "y" ]; then
-    warning "Aborted."
-    return 1
-  fi
-
-  if [ -f "$HOME/.gitconfig" ]; then
-    rm -f "$HOME/.gitconfig"
-    msg ".gitconfig configuration has been deleted."
-  else
-    warning ".gitconfig file does not exist. Skipping..."
-  fi
-
-  if [ -d "$system_config_folder/git" ]; then
-    rm -rf "$system_config_folder/git"
-    msg "All gitconfig configurations have been deleted."
-  else
-    warning "The $system_config_folder/git directory does not exist. Skipping..."
-  fi
-}
-
-delete_gitconfig
+delete_wakatime
