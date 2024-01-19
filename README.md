@@ -43,3 +43,5 @@ bash install.sh
 ```
 
 on a new Machine
+
+**Note** .zshrc is not backup

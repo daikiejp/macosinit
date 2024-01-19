@@ -78,9 +78,25 @@ fi
 
 #!/bin/bash
 
-if [ -f "$config_folder/wakatime.cfg" ]; then
-  cp "$config_folder/wakatime.cfg" "$HOME/.wakatime.cfg"
-  msg "The wakatime.cfg file has been copied."
+comment_line='# GPG Issue'
+line_to_add='export GPG_TTY=$TTY'
+
+zshrc_file="$HOME/.zshrc"
+
+if [ ! -f "$zshrc_file" ]; then
+  touch "$zshrc_file"
+  msg "Created $zshrc_file as it did not exist."
+fi
+
+if grep -Fxq "$comment_line" "$zshrc_file" && grep -Fxq "$line_to_add" "$zshrc_file"; then
+
+  warning "The line '$line_to_add' already exists in $zshrc_file. No changes made."
 else
-  warning "The wakatime config file does not exist in the $config_folder directory. Skipping..."
+  {
+    echo "$comment_line"
+    echo "$line_to_add"
+    cat "$zshrc_file"
+  } > "$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
+
+  msg ".zshrc file is created and added GPG_TTY"
 fi
