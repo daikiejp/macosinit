@@ -45,6 +45,25 @@ fi
 
 #!/bin/bash
 
+delete_zshrc() {
+  read -p "Are you sure you want to delete .zshrc configurations? This action cannot be undone. (y/n): " confirmation
+
+  if [ "$confirmation" != "y" ]; then
+    warning "Aborted."
+    return 1
+  fi
+
+  if [ -f "$HOME/.zshrc" ]; then
+    rm -f "$HOME/.zshrc"
+    msg ".zshrc configuration has been deleted."
+  else
+    warning ".zshrc file does not exist. Skipping..."
+  fi
+}
+
+delete_zshrc
+#!/bin/bash
+
 delete_wakatime() {
   read -p "Are you sure you want to delete wakatime configurations? This action cannot be undone. (y/n): " confirmation
 
