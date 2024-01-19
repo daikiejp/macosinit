@@ -8,16 +8,8 @@ const sourceFilePaths = [
   'utils/checkFolder.sh',
   'backup/SSH.sh',
   // 'backup/GPG.sh',
-  'backup/configSSH.sh',
-  // 'utils/checkXcodeCli.sh',
-  // 'utils/DS_Store.sh',
-  // 'utils/checkFiles.sh',
-  // 'configs/ssh.sh',
-  // 'configs/homebrew.sh',
-  // 'configs/gpg.sh',
-  // 'configs/wallpapers.sh',
-  // 'configs/zshrc.sh',
-  // 'configs/scripts.sh',
+  // 'backup/configSSH.sh',
+  'backup/config/gitconfig.sh',
 ];
 const destinationFilePath = 'backup.sh';
 

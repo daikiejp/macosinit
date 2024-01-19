@@ -83,10 +83,18 @@ else
 fi
 #!/bin/bash
 
-if [ -f "$system_ssh_folder/config" ]; then
-  mkdir -p "$config_folder/ssh"
-  cp "$system_ssh_folder/config" "$config_folder/ssh/config"
-  msg "The config file has been copied to the Desktop."
+if [ -f "$HOME/.gitconfig" ]; then
+  mkdir -p "$config_folder/git"
+  cp "$HOME/.gitconfig" "$config_folder/git/gitconfig"
+  msg "The .gitconfig file has been copied. (It's not hidden)"
 else
-  warning "The config file does not exist in the .ssh directory."
+  warning "The .gitconfig file does not exist in the $HOME directory."
 fi
+
+if [ -d "$system_config_folder/git" ]; then
+  cp -R "$system_config_folder/git" "$config_folder"
+  msg "The git config files has been copied."
+else
+  warning "The git config files does not exists in the $config_folder directory."
+fi
+
