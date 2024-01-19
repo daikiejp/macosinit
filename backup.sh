@@ -61,40 +61,11 @@ else
   mkdir "$config_folder"
   msg "Folder '$config_folder' has been created."
 fi
-copy_and_rename() {
-  local src_dir=$1
-  local dest_dir=$2
-  for file in "$src_dir"/*; do
-    if [[ -f $file ]]; then
-      base_name=$(basename "$file")
-      if [[ "$base_name" != "config" ]]; then
-        new_name="${base_name#.}"
-        cp "$file" "$dest_dir/$new_name"
-      fi
-    fi
-  done
-}
-
-if [ -d "$system_ssh_folder" ]; then
-  copy_and_rename "$system_ssh_folder" "$ssh_folder"
-  msg "SSH files have been copied to '$ssh_folder' and renamed." 
-else
-  warning "SSH directory does not exist, skipping..."
-fi
 #!/bin/bash
 
-if [ -f "$HOME/.gitconfig" ]; then
-  mkdir -p "$config_folder/git"
-  cp "$HOME/.gitconfig" "$config_folder/git/gitconfig"
-  msg "The .gitconfig file has been copied. (It's not hidden)"
+if [ -f "$HOME/.wakatime.cfg" ]; then
+  cp "$HOME/.wakatime.cfg" "$config_folder/wakatime.cfg"
+  msg "The wakatime.cfg file has been copied. (It's not hidden)"
 else
-  warning "The .gitconfig file does not exist in the $HOME directory."
+  warning "The wakatime config file does not exist in the $HOME directory. Skipping..."
 fi
-
-if [ -d "$system_config_folder/git" ]; then
-  cp -R "$system_config_folder/git" "$config_folder"
-  msg "The git config files has been copied."
-else
-  warning "The git config files does not exists in the $config_folder directory."
-fi
-

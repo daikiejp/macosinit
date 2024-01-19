@@ -6,10 +6,11 @@ const sourceFilePaths = [
   'helpers/helpers.sh',
   'utils/checkOS.sh',
   'utils/checkFolder.sh',
-  'backup/SSH.sh',
+  // 'backup/SSH.sh',
   // 'backup/GPG.sh',
   // 'backup/config/SSH.sh',
-  'backup/config/gitconfig.sh',
+  // 'backup/config/gitconfig.sh',
+  'backup/config/wakatime.sh',
 ];
 const destinationFilePath = 'backup.sh';
 
