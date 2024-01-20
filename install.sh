@@ -24,7 +24,7 @@ macosinit_folder="$desktop_path/macosinit"
 ssh_folder="$macosinit_folder/ssh"
 gpg_folder="$macosinit_folder/gpg"
 config_folder="$macosinit_folder/config"
-zshrc_file="zshrc"
+zshrc_file="$HOME/.zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 wallpapers_data="$wallpapers_folder/wallpapers.json"
@@ -75,33 +75,4 @@ if [ -d "$config_folder" ]; then
 else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
 fi
-
-#!/bin/bash
-
-if [[ ! -f "$homebrew_packages" ]]; then
-    warning "Error: File '$homebrew_packages' not found."
-fi
-
-if ! command -v brew >/dev/null 2>&1; then
-    echo "Installing Homebrew..."
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    if command -v brew >/dev/null 2>&1; then
-        msg "Homebrew installed successfully."
-    else
-        abort "Failed to install Homebrew."
-    fi
-else
-    warning "Homebrew is already installed. Skipping..."
-fi
-
-echo "Updating Homebrew..."
-brew update
-
-  
-  
-xargs brew install < $homebrew_packages
-
-msg "All packages from $homebrew_packages have been processed."
 

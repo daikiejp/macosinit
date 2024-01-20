@@ -4,9 +4,6 @@
 comment_line='# GPG Issue'
 line_to_add='export GPG_TTY=$TTY'
 
-# Define the .zshrc file path
-zshrc_file="$HOME/.zshrc"
-
 # Check if the .zshrc file exists, if not create it
 if [ ! -f "$zshrc_file" ]; then
   touch "$zshrc_file"
