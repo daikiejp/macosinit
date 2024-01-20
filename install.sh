@@ -27,7 +27,6 @@ config_folder="$macosinit_folder/config"
 zshrc_file="$HOME/.zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
-wallpapers_data="$wallpapers_folder/wallpapers.json"
 homebrew_packages="$config_folder/brew.txt"
 scripts_folder="$macosinit_folder/scripts"
 system_scripts="$HOME/.config/scripts"
@@ -74,5 +73,14 @@ if [ -d "$config_folder" ]; then
   msg "The 'config' folder exists on the desktop."
 else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
+fi
+
+if [ -z "$(ls -A $wallpapers_folder)" ]; then
+    warning "Wallpapers JSON file not found in $wallpapers_folder. Skipping..."
+else
+    mkdir -p $system_wallpapers_folder
+
+    cp "$wallpapers_folder"/* "$system_wallpapers_folder"
+    msg "Wallpapers installed."
 fi
 
