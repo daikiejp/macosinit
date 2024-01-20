@@ -61,11 +61,11 @@ else
   mkdir "$config_folder"
   msg "Folder '$config_folder' has been created."
 fi
-#!/bin/bash
 
-if [ -f "$HOME/.wakatime.cfg" ]; then
-  cp "$HOME/.wakatime.cfg" "$config_folder/wakatime.cfg"
-  msg "The wakatime.cfg file has been copied. (It's not hidden)"
+if command -v brew >/dev/null 2>&1; then
+    brew list > "$config_folder/brew.txt"
+
+    msg "List of installed Homebrew packages has been successfully exported to $config_folder/brew.txt"
 else
-  warning "The wakatime config file does not exist in the $HOME directory. Skipping..."
+    warning "Homebrew is not installed on this system. Skipping..."
 fi
