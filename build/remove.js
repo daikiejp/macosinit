@@ -8,10 +8,11 @@ const sourceFilePaths = [
   // 'remove/SSH.sh',
   // 'remove/GPG.sh',
   // 'remove/config/gitconfig.sh',
-  'remove/config/brew.sh',
+  // 'remove/config/brew.sh',
   // 'remove/config/zshrc.sh',
   // 'remove/config/ohmyzshpower10k.sh',
   // 'remove/config/wakatime.sh',
+  'remove/wallpaper.sh',
 ];
 const destinationFilePath = 'remove.sh';
 

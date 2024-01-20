@@ -27,7 +27,6 @@ config_folder="$macosinit_folder/config"
 zshrc_file="$HOME/.zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
-wallpapers_data="$wallpapers_folder/wallpapers.json"
 homebrew_packages="$config_folder/brew.txt"
 scripts_folder="$macosinit_folder/scripts"
 system_scripts="$HOME/.config/scripts"
@@ -45,33 +44,21 @@ fi
 
 #!/bin/bash
 
-if command -v brew >/dev/null 2>&1; then
-    installed_packages=$(brew leaves -r && brew list --cask)
+delete_wallpaper() {
+  read -p "Are you sure you want to delete all Wallpapers? This action cannot be undone. (y/n): " confirmation
 
-    for package in $installed_packages; do
-        echo "Uninstalling $package..."
-        brew uninstall --force "$package"
-    done
+  if [ "$confirmation" != "y" ]; then
+    warning "Aborted."
+    return 1
+  fi
 
-    msg "All Homebrew packages have been uninstalled."
+  if [ -d "$system_wallpapers_folder" ]; then
+    rm -rf "$system_wallpapers_folder"/*
+    echo "All Wallpapers have been deleted."
+  else
+    echo "The Wallpaper directory does not exist. Skipping..."
+  fi
+}
 
-    echo "Uninstalling Homebrew..."
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-
-    sudo rm -rf /usr/local/Homebrew
-    sudo rm -rf /opt/homebrew
-    sudo rm -rf /usr/local/Caskroom
-    sudo rm -rf /usr/local/Cellar
-    sudo rm -rf /usr/local/bin/brew
-
-    sed -i '' '/# Homebrew/d' ~/.bash_profile
-    sed -i '' '/# Homebrew/d' ~/.zshrc
-    sed -i '' '/export PATH=\/usr\/local\/bin:\$PATH/d' ~/.bash_profile
-    sed -i '' '/export PATH=\/opt\/homebrew\/bin:\$PATH/d' ~/.zshrc
-
-    msg "Homebrew and all its packages have been successfully uninstalled."
-else
-    warning "Homebrew is not installed on this system. Skipping..."
-fi
+delete_wallpaper
 
