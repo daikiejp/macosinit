@@ -76,13 +76,12 @@ else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
 fi
 
-if [ -z "$(ls -A $fonts_folder)" ]; then
-    warning "fonts JSON file not found in $fonts_folder. Skipping..."
+#!/bin/bash
+
+if [ -f "$config_folder/vimrc" ]; then
+  cp "$config_folder/vimrc" "$HOME/.vimrc"
+  msg "The vimrc file has been copied."
 else
-    mkdir -p $system_fonts_folder
-
-    cp -r "$fonts_folder"/* "$system_fonts_folder"
-    msg "Fonts installed."
+  warning "The vimrc config file does not exist in the $config_folder directory. Skipping..."
 fi
-
 
