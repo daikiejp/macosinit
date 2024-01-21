@@ -33,7 +33,8 @@ system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
 aliases_file="$macosinit_folder/aliases.sh"
 aliases_system_file="$system_config_folder/aliases.sh"
-
+fonts_folder="$macosinit_folder/fonts"
+system_fonts_folder="$HOME/Library/Fonts"
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -75,12 +76,13 @@ else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
 fi
 
-if [ -z "$(ls -A $wallpapers_folder)" ]; then
-    warning "Wallpapers JSON file not found in $wallpapers_folder. Skipping..."
+if [ -z "$(ls -A $fonts_folder)" ]; then
+    warning "fonts JSON file not found in $fonts_folder. Skipping..."
 else
-    mkdir -p $system_wallpapers_folder
+    mkdir -p $system_fonts_folder
 
-    cp "$wallpapers_folder"/* "$system_wallpapers_folder"
-    msg "Wallpapers installed."
+    cp -r "$fonts_folder"/* "$system_fonts_folder"
+    msg "Fonts installed."
 fi
+
 

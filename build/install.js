@@ -16,8 +16,8 @@ const sourceFilePaths = [
   // 'install/config/ohmyzshpower10k.sh',
   // 'install/config/zshrc.sh', // in this order because power10k delete the zshrc TTY line
   // 'install/config/wakatime.sh',
-  'install/wallpaper.sh',
-  // 'configs/zshrc.sh',
+  // 'install/wallpaper.sh',
+  'install/fonts.sh',
   // 'configs/scripts.sh',
 ];
 const destinationFilePath = 'install.sh';
