@@ -61,10 +61,12 @@ else
   mkdir "$config_folder"
   msg "Folder '$config_folder' has been created."
 fi
-if [ -d "$system_fonts_folder" ]; then
-  mkdir -p "$fonts_folder"
-  cp -r "$system_fonts_folder"/* "$fonts_folder"
-  msg "fonts have been copied to '$fonts_folder'." 
+#!/bin/bash
+
+if [ -f "$HOME/.vimrc" ]; then
+  cp "$HOME/.vimrc" "$config_folder/vimrc"
+  msg "The vimrc file has been copied. (It's not hidden)"
 else
-  warning "Fonts directory does not exist, skipping..."
+  warning "The vimrc config file does not exist in the $HOME directory. Skipping..."
 fi
+
