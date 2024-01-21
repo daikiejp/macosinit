@@ -30,4 +30,5 @@ system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
 aliases_file="$macosinit_folder/aliases.sh"
 aliases_system_file="$system_config_folder/aliases.sh"
-
+fonts_folder="$macosinit_folder/fonts"
+system_fonts_folder="$HOME/Library/Fonts"

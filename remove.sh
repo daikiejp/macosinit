@@ -33,7 +33,8 @@ system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
 aliases_file="$macosinit_folder/aliases.sh"
 aliases_system_file="$system_config_folder/aliases.sh"
-
+fonts_folder="$macosinit_folder/fonts"
+system_fonts_folder="$HOME/Library/Fonts"
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -44,21 +45,21 @@ fi
 
 #!/bin/bash
 
-delete_wallpaper() {
-  read -p "Are you sure you want to delete all Wallpapers? This action cannot be undone. (y/n): " confirmation
+delete_fonts() {
+  read -p "Are you sure you want to delete all Fonts? This action cannot be undone. (y/n): " confirmation
 
   if [ "$confirmation" != "y" ]; then
     warning "Aborted."
     return 1
   fi
 
-  if [ -d "$system_wallpapers_folder" ]; then
-    rm -rf "$system_wallpapers_folder"/*
-    echo "All Wallpapers have been deleted."
+  if [ -d "$system_fonts_folder" ]; then
+    rm -rf "$system_fonts_folder"/*
+    echo "All Fonts have been deleted."
   else
-    echo "The Wallpaper directory does not exist. Skipping..."
+    echo "The Fonts directory does not exist. Skipping..."
   fi
 }
 
-delete_wallpaper
+delete_fonts
 
