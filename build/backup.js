@@ -9,9 +9,10 @@ const sourceFilePaths = [
   // 'backup/SSH.sh',
   // 'backup/GPG.sh',
   // 'backup/config/SSH.sh',
-  'backup/config/brew.sh',
+  // 'backup/config/brew.sh',
   // 'backup/config/gitconfig.sh',
   // 'backup/config/wakatime.sh',
+  'backup/wallpaper.sh',
 ];
 const destinationFilePath = 'backup.sh';
 

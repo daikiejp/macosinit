@@ -6,7 +6,7 @@ else
     mkdir -p $system_wallpapers_folder
 
     # Copy Wallpapers
-    cp "$wallpapers_folder"/* "$system_wallpapers_folder"
+    cp -r "$wallpapers_folder"/* "$system_wallpapers_folder"
     msg "Wallpapers installed."
 fi
 

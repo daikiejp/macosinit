@@ -27,7 +27,6 @@ config_folder="$macosinit_folder/config"
 zshrc_file="$HOME/.zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
-wallpapers_data="$wallpapers_folder/wallpapers.json"
 homebrew_packages="$config_folder/brew.txt"
 scripts_folder="$macosinit_folder/scripts"
 system_scripts="$HOME/.config/scripts"
@@ -61,14 +60,10 @@ else
   mkdir "$config_folder"
   msg "Folder '$config_folder' has been created."
 fi
-
-if command -v brew >/dev/null 2>&1; then
-    brew leaves -r > "$homebrew_packages"
-    brew list --cask >> "$homebrew_packages"
-
-    msg "List of installed Homebrew packages has been successfully exported to $homebrew_packages"
+if [ -d "$system_wallpapers_folder" ]; then
+  mkdir -p "$wallpapers_folder"
+  cp -r "$system_wallpapers_folder"/* "$wallpapers_folder"
+  msg "Wallpapers have been copied to '$wallpapers_folder'." 
 else
-    warning "Homebrew is not installed on this system. Skipping..."
-    touch $homebrew_packages
+  warning "Wallpaper directory does not exist, skipping..."
 fi
-
