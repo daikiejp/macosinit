@@ -45,21 +45,22 @@ fi
 
 #!/bin/bash
 
-delete_fonts() {
-  read -p "Are you sure you want to delete all Fonts? This action cannot be undone. (y/n): " confirmation
+delete_vimrc() {
+  read -p "Are you sure you want to delete vimrc configurations? This action cannot be undone. (y/n): " confirmation
 
   if [ "$confirmation" != "y" ]; then
     warning "Aborted."
     return 1
   fi
 
-  if [ -d "$system_fonts_folder" ]; then
-    rm -rf "$system_fonts_folder"/*
-    echo "All Fonts have been deleted."
+  if [ -f "$HOME/.vimrc" ]; then
+    rm -f "$HOME/.vimrc"
+    msg ".vimrc configuration has been deleted."
   else
-    echo "The Fonts directory does not exist. Skipping..."
+    warning ".vimrc file does not exist. Skipping..."
   fi
+
 }
 
-delete_fonts
+delete_vimrc
 

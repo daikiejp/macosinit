@@ -31,3 +31,4 @@ delete_gitconfig() {
 
 # Call the function
 delete_gitconfig
+

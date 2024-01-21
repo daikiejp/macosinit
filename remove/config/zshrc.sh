@@ -22,3 +22,4 @@ delete_zshrc() {
 
 # Call the function
 delete_zshrc
+

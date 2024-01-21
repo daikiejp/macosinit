@@ -22,3 +22,4 @@ delete_ssh_keys() {
 
 # Call the function
 delete_ssh_keys
+

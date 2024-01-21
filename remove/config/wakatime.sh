@@ -33,3 +33,4 @@ delete_wakatime() {
 
 # Call the function
 delete_wakatime
+

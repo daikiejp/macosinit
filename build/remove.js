@@ -12,8 +12,9 @@ const sourceFilePaths = [
   // 'remove/config/zshrc.sh',
   // 'remove/config/ohmyzshpower10k.sh',
   // 'remove/config/wakatime.sh',
+  'remove/config/vimrc.sh',
   // 'remove/wallpaper.sh',
-  'remove/fonts.sh',
+  // 'remove/fonts.sh',
 ];
 const destinationFilePath = 'remove.sh';
 

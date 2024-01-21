@@ -41,3 +41,4 @@ delete_ohmyzshpower10k() {
 
 # Call the function
 delete_ohmyzshpower10k
+

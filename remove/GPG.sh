@@ -27,3 +27,4 @@ delete_gpg_keys() {
 
 # Call the function
 delete_gpg_keys
+
