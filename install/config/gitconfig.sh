@@ -34,3 +34,4 @@ if [ -d "$config_folder/git" ]; then
 else
   warning "The git config directory does not exist in the $config_folder directory. Skipping..."
 fi
+

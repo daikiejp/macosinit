@@ -25,3 +25,4 @@ else
 
   msg ".zshrc file is created and added GPG_TTY"
 fi
+

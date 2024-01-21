@@ -8,3 +8,4 @@ if [ -f "$config_folder/wakatime.cfg" ]; then
 else
   warning "The wakatime config file does not exist in the $config_folder directory. Skipping..."
 fi
+

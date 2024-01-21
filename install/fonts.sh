@@ -10,4 +10,3 @@ else
     msg "Fonts installed."
 fi
 
-

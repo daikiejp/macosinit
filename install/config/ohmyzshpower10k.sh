@@ -47,3 +47,4 @@ install_powerlevel10k() {
 # Install Oh My Zsh and Powerlevel10k
 install_oh_my_zsh
 install_powerlevel10k
+
