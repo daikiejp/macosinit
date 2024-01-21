@@ -19,3 +19,4 @@ gpg --export-ownertrust > "$gpg_folder/ownertrust.txt"
 #msg "Ownertrust exported to $gpg_folder/ownertrust.txt"
 
 msg "GPG keys have been exported to '$gpg_folder'."
+

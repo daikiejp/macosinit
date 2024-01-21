@@ -6,15 +6,15 @@ const sourceFilePaths = [
   'helpers/helpers.sh',
   'utils/checkOS.sh',
   'utils/checkFolder.sh',
-  // 'backup/SSH.sh',
-  // 'backup/GPG.sh',
-  // 'backup/config/SSH.sh',
-  // 'backup/config/brew.sh',
-  // 'backup/config/gitconfig.sh',
-  // 'backup/config/wakatime.sh',
+  'backup/SSH.sh',
+  'backup/GPG.sh',
+  'backup/config/SSH.sh',
+  'backup/config/brew.sh',
+  'backup/config/gitconfig.sh',
+  'backup/config/wakatime.sh',
   'backup/config/vimrc.sh',
-  // 'backup/wallpaper.sh',
-  // 'backup/fonts.sh',
+  'backup/wallpaper.sh',
+  'backup/fonts.sh',
 ];
 const destinationFilePath = 'backup.sh';
 

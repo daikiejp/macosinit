@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if the .ssh/config file exists
 if [ -f "$system_ssh_folder/config" ]; then
   # Create config SSH folder

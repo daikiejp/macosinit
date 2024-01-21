@@ -21,3 +21,4 @@ if [ -d "$system_ssh_folder" ]; then
 else
   warning "SSH directory does not exist, skipping..."
 fi
+

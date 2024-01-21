@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if the wakatime config file exists
 if [ -f "$HOME/.wakatime.cfg" ]; then
   # Copy the config file to the Desktop
@@ -8,3 +6,4 @@ if [ -f "$HOME/.wakatime.cfg" ]; then
 else
   warning "The wakatime config file does not exist in the $HOME directory. Skipping..."
 fi
+

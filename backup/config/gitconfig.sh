@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if the .gitconfig file exists
 if [ -f "$HOME/.gitconfig" ]; then
   # Create config git folder

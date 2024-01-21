@@ -1,5 +1,3 @@
-# !/bin/bash
-
 # Check if Homebrew is installed
 if command -v brew >/dev/null 2>&1; then
     # List all installed packages and redirect the output to the file

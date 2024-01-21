@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if the vimrc config file exists
 if [ -f "$HOME/.vimrc" ]; then
   # Copy the config file to the Desktop
