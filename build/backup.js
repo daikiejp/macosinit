@@ -12,7 +12,8 @@ const sourceFilePaths = [
   // 'backup/config/brew.sh',
   // 'backup/config/gitconfig.sh',
   // 'backup/config/wakatime.sh',
-  'backup/wallpaper.sh',
+  // 'backup/wallpaper.sh',
+  'backup/fonts.sh',
 ];
 const destinationFilePath = 'backup.sh';
 

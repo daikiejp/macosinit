@@ -33,7 +33,8 @@ system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
 aliases_file="$macosinit_folder/aliases.sh"
 aliases_system_file="$system_config_folder/aliases.sh"
-
+fonts_folder="$macosinit_folder/fonts"
+system_fonts_folder="$HOME/Library/Fonts"
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
@@ -60,10 +61,10 @@ else
   mkdir "$config_folder"
   msg "Folder '$config_folder' has been created."
 fi
-if [ -d "$system_wallpapers_folder" ]; then
-  mkdir -p "$wallpapers_folder"
-  cp -r "$system_wallpapers_folder"/* "$wallpapers_folder"
-  msg "Wallpapers have been copied to '$wallpapers_folder'." 
+if [ -d "$system_fonts_folder" ]; then
+  mkdir -p "$fonts_folder"
+  cp -r "$system_fonts_folder"/* "$fonts_folder"
+  msg "fonts have been copied to '$fonts_folder'." 
 else
-  warning "Wallpaper directory does not exist, skipping..."
+  warning "Fonts directory does not exist, skipping..."
 fi

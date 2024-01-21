@@ -1,6 +1,6 @@
 # Copy all Wallpapers
 if [ -d "$system_wallpapers_folder" ]; then
-  # Create config git folder
+  # Create Wallpaper folder
   mkdir -p "$wallpapers_folder"
   # Copy Wallpapers
   cp -r "$system_wallpapers_folder"/* "$wallpapers_folder"
@@ -8,3 +8,4 @@ if [ -d "$system_wallpapers_folder" ]; then
 else
   warning "Wallpaper directory does not exist, skipping..."
 fi
+
