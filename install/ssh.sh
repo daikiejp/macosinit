@@ -13,21 +13,22 @@ else
         chmod 600 "$ssh_key_file"
 
         # Extract the SSH public key from the file
-        ssh_public_key=$(ssh-keygen -y -f $ssh_key_file 2>&1)
+        # ssh_public_key=$(ssh-keygen -y -f $ssh_key_file 2>&1)
 
         # Check if the key format is valid
-        if [[ $ssh_public_key == *"invalid format"* ]]; then
-            cp "$ssh_key_file" "$system_ssh_folder"
-            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
+        # if [[ $ssh_public_key == *"invalid format"* ]]; then
+            # cp "$ssh_key_file" "$system_ssh_folder"
+            # msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
 
             # abort "Error: Invalid format for key file $ssh_key_file"
-        else
+        # else
             # Copy the SSH private key to the system SSH folder
             cp "$ssh_key_file" "$system_ssh_folder"
+            msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
             # ssh-add "$ssh_key_file"
 
             msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
-        fi 
+        # fi 
     done
 fi
 
