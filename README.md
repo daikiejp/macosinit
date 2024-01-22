@@ -2,20 +2,21 @@
 
 ## Modules
 
-| Name         | Description                  | Required | macOSInit |
-| ------------ | ---------------------------- | -------- | --------- |
-| SSH          | Install SSH Keys             | Yes      | Supported |
-| Homebrew     | Install Homebrew and apps    | Yes      | Supported |
-| GPG          | Install GPG Keys             | Optional | Supported |
-| Wallpapers   | Copy Wallpapers              | Optional | Supported |
-| Fonts        | Copy Wallpapers              | Yes      | Supported |
-| zshrc        | Copy zshrc config file       | Yes      | Supported |
-| scripts      | Custom scripts and aliases   | Optional | Manually  |
-| vimrc        | Copy vimrc config file       | Yes      | Supported |
-| gitconfig    | Git config and workspace     | Yes      | Supported |
-| vscode       | Extensions, Theme and Config | Yes      | Manually  |
-| wakatime.cfg | Wakatime Config              | Optional | Supported |
-| Emails       | Profile Config               | Optional | Manually  |
+| Name         | Description                     | Required | macOSInit |
+| ------------ | ------------------------------- | -------- | --------- |
+| SSH          | Install SSH Keys                | Yes      | Supported |
+| GPG          | Install GPG Keys                | Optional | Supported |
+| gitconfig    | Git config and workspace        | Yes      | Supported |
+| Homebrew     | Install Homebrew and apps       | Yes      | Supported |
+| Power10k     | Install Oh My Zsh and Power 10k | Yes      | Supported |
+| zshrc        | Copy zshrc config file          | Yes      | Supported |
+| wakatime.cfg | Wakatime Config                 | Optional | Supported |
+| Wallpapers   | Copy Wallpapers                 | Optional | Supported |
+| Fonts        | Copy Wallpapers                 | Yes      | Supported |
+| scripts      | Custom scripts and aliases      | Optional | Manually  |
+| vimrc        | Copy vimrc config file          | Yes      | Supported |
+| vscode       | Extensions, Theme and Config    | Yes      | Manually  |
+| Emails       | Profile Config                  | Optional | Manually  |
 
 ## TODO
 
@@ -60,9 +61,20 @@ I am personally using it only for **Email configurations**.
 
 - Obsidian
 
+### Visual Studio Code Configurations
+
+For VS Code, it is not possible to automatically install personal settings. However, I have created two VSCode profiles that suit my own needs: one environment for JavaScript and another environment for Data Science.
+
+Please use my settings and configure them according to your needs.
+
+You need import Profile from VS Code and the paste the following URLs:
+
+For JavaScript: `https://tools.daikie.jp/vscode`  
+For Data Science: `https://tools.daikie.jp/datascience`
+
 ### List of manual installations
 
-- Drivers
+- Drivers (Printer, Scanner, Android USB Tools)
 
 ## Author
 
