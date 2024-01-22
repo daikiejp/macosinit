@@ -8,11 +8,11 @@ const sourceFilePaths = [
   'utils/checkXcodeCli.sh',
   'utils/DS_Store.sh',
   'utils/checkFiles.sh',
+  'install/config/brew.sh',
   'install/SSH.sh',
   'install/GPG.sh',
   'install/config/SSH.sh',
   'install/config/gitconfig.sh',
-  'install/config/brew.sh',
   'install/config/ohmyzshpower10k.sh',
   'install/config/zshrc.sh', // in this order because power10k delete the zshrc TTY line
   'install/config/wakatime.sh',

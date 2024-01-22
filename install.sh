@@ -73,6 +73,33 @@ else
   abort "Error: The 'config' folder does not exist on the 'macosinit' folder."
 fi
 
+#!/bin/bash
+
+if [[ ! -f "$homebrew_packages" ]]; then
+    warning "Error: File '$homebrew_packages' not found."
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew..."
+
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    if command -v brew >/dev/null 2>&1; then
+        msg "Homebrew installed successfully."
+    else
+        abort "Failed to install Homebrew."
+    fi
+else
+    warning "Homebrew is already installed. Skipping..."
+fi
+
+echo "Updating Homebrew..."
+brew update
+
+xargs brew install < $homebrew_packages
+
+msg "All packages from $homebrew_packages have been processed."
+
 
 if [ -z "$(ls -A $ssh_folder)" ]; then
     warning "No SSH keys found in $ssh_folder"
@@ -155,33 +182,6 @@ if [ -d "$config_folder/git" ]; then
 else
   warning "The git config directory does not exist in the $config_folder directory. Skipping..."
 fi
-
-#!/bin/bash
-
-if [[ ! -f "$homebrew_packages" ]]; then
-    warning "Error: File '$homebrew_packages' not found."
-fi
-
-if ! command -v brew >/dev/null 2>&1; then
-    echo "Installing Homebrew..."
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    if command -v brew >/dev/null 2>&1; then
-        msg "Homebrew installed successfully."
-    else
-        abort "Failed to install Homebrew."
-    fi
-else
-    warning "Homebrew is already installed. Skipping..."
-fi
-
-echo "Updating Homebrew..."
-brew update
-
-xargs brew install < $homebrew_packages
-
-msg "All packages from $homebrew_packages have been processed."
 
 #!/bin/bash
 
