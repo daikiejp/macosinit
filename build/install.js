@@ -19,7 +19,6 @@ const sourceFilePaths = [
   // 'install/config/wakatime.sh',
   // 'install/wallpaper.sh',
   // 'install/fonts.sh',
-  // 'configs/scripts.sh',
 ];
 const destinationFilePath = 'install.sh';
 

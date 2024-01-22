@@ -28,13 +28,10 @@ zshrc_file="$HOME/.zshrc"
 system_wallpapers_folder="$pictures_folder/Wallpapers"
 wallpapers_folder="$macosinit_folder/wallpapers"
 homebrew_packages="$config_folder/brew.txt"
-scripts_folder="$macosinit_folder/scripts"
-system_scripts="$HOME/.config/scripts"
 system_config_folder="$HOME/.config"
-aliases_file="$macosinit_folder/aliases.sh"
-aliases_system_file="$system_config_folder/aliases.sh"
 fonts_folder="$macosinit_folder/fonts"
 system_fonts_folder="$HOME/Library/Fonts"
+
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]
 then
