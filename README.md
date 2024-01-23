@@ -18,6 +18,10 @@
 | vscode       | Extensions, Theme and Config    | Yes      | Manually  |
 | Emails       | Profile Config                  | Optional | Manually  |
 
+## Requirements
+
+You need a folder called "macosinit" on the Desktop with your personal backup files such as SSH keys, configs, wallpapers, etc. Or you can use the script to make a backup before: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/daikiejp/macosinit/master/backup.sh)"`
+
 ## Usage
 
 ```bash
