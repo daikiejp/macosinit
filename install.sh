@@ -82,7 +82,12 @@ fi
 if ! command -v brew >/dev/null 2>&1; then
     echo "Installing Homebrew..."
 
+
+
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    source ~/.zprofile
 
     if command -v brew >/dev/null 2>&1; then
         msg "Homebrew installed successfully."
@@ -109,17 +114,12 @@ else
     for ssh_key_file in $ssh_folder/*; do
         chmod 600 "$ssh_key_file"
 
-        ssh_public_key=$(ssh-keygen -y -f $ssh_key_file 2>&1)
 
-        if [[ $ssh_public_key == *"invalid format"* ]]; then
+
             cp "$ssh_key_file" "$system_ssh_folder"
             msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
 
-        else
-            cp "$ssh_key_file" "$system_ssh_folder"
-
             msg "SSH keys from $ssh_key_file copied to $system_ssh_folder"
-        fi 
     done
 fi
 

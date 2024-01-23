@@ -9,11 +9,12 @@ fi
 if ! command -v brew >/dev/null 2>&1; then
     echo "Installing Homebrew..."
 
-    # After Homebrew installation
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/$HOME/.zprofile
+
 
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # After Homebrew installation
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
     source ~/.zprofile
 
