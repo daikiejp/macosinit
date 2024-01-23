@@ -18,11 +18,6 @@
 | vscode       | Extensions, Theme and Config    | Yes      | Manually  |
 | Emails       | Profile Config                  | Optional | Manually  |
 
-## TODO
-
-- Docker Data
-- Preferences
-
 ## Usage
 
 ```bash
@@ -57,7 +52,7 @@ Some configurations need to be installed manually due to security or macOS limit
 
 I am personally using it only for **Email configurations**.
 
-### Post-install script
+### Post-install script (examples)
 
 - Obsidian
 
@@ -72,9 +67,16 @@ You need import Profile from VS Code and the paste the following URLs:
 For JavaScript: `https://tools.daikie.jp/vscode`  
 For Data Science: `https://tools.daikie.jp/datascience`
 
-### List of manual installations
+### List of manual installations/configurations
 
 - Drivers (Printer, Scanner, Android USB Tools)
+- Organize Apps Folder
+- Organize macOS Dock
+- macOS Preferences
+
+### Others configuration
+
+For more information or more configurations visit https://tools.daikie.jp/
 
 ## Author
 
